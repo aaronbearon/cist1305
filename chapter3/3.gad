@@ -1,0 +1,9 @@
+Declare Integer a, b
+Display "What's the value of a?"
+Input a
+If a < 10 Then
+   Set b = 0
+Else
+   Set b = 99
+End If
+Display "a=", a, " b=", b

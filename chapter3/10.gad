@@ -1,0 +1,7 @@
+Declare Real hours
+Declare Boolean minimum
+Input minimum
+If minimum Then
+   Set hours = 10
+End If
+Display "hours: ", hours
