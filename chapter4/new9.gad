@@ -1,0 +1,27 @@
+// Exercise 9: Fast Freight Shipping Company pseudocode:
+
+Declare Real packagePounds, ratePerPound, totalCost
+
+// Loop exits after valid weight is entered
+While packagePounds <= 0
+    Display "How many pounds does your package weigh?"
+    Input packagePounds
+    If packagePounds <= 0 Then
+       Display "Invalid weight."
+    End If
+End While
+
+If packagePounds > 10 Then
+   Set ratePerPound = 3.8
+Else If packagePounds > 6 Then
+   Set ratePerPound = 3.7
+Else If packagePounds > 2 Then
+   Set ratePerPound = 2.2
+Else
+   Set ratePerPound = 1.1
+End If
+
+Set totalCost = packagePounds * ratePerPound
+// User should see the amount per pound and total cost
+Display "Your shipping rate is $", ratePerPound, "0/lb."
+Display "The total shipping cost of this package is $", totalCost, "."

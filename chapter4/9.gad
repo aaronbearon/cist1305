@@ -1,0 +1,20 @@
+Declare Real packagePounds, ratePerPound, totalCost
+While packagePounds <= 0
+    Display "How many pounds does your package weigh?"
+    Input packagePounds
+    If packagePounds <= 0 Then
+       Display "Invalid weight."
+    End If
+End While
+If packagePounds > 10 Then
+   Set ratePerPound = 3.8
+Else If packagePounds > 6 Then
+   Set ratePerPound = 3.7
+Else If packagePounds > 2 Then
+   Set ratePerPound = 2.2
+Else
+   Set ratePerPound = 1.1
+End If
+Set totalCost = packagePounds * ratePerPound
+Display "This package is $", ratePerPound, "0/lb."
+Display "The total cost of this package is $", totalCost, "."
