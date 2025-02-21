@@ -1,7 +1,7 @@
 Declare Integer days
 Declare Real totalAmount, dayNumber, salary
 Set totalAmount = 0
-Display "Enter the number of days you want to build on money."
+Display "Enter the number of days you work."
 Input days
 For dayNumber = 1 To days
     Set salary = 2^(dayNumber - 1)
