@@ -1,0 +1,11 @@
+Declare Integer days
+Declare Real totalAmount, dayNumber, salary
+Set totalAmount = 0
+Display "Enter the number of days you want to build on money."
+Input days
+For dayNumber = 1 To days
+    Set salary = 2^(dayNumber - 1)
+    Display "Day ", dayNumber, " income: $", salary / 100
+    Set totalAmount = salary + totalAmount
+End For
+Display "In total, you've made $", totalAmount / 100, "."

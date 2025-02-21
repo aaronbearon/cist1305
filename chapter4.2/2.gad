@@ -1,0 +1,22 @@
+Declare Integer mostRecent, greatest, least, counter
+Display "Type a list of numbers (hitting enter between each one)."
+Display "Each number must be above -99. Type -99 when you're done."
+Set counter = 0
+While mostRecent != -99
+    If mostRecent < 0 - 99 Then
+       Display "Invalid number"
+    Else If counter == 1 Then
+       Set greatest = mostRecent
+       Set least = mostRecent
+    Else
+       If mostRecent > greatest Then
+          Set greatest = mostRecent
+       End If
+       If mostRecent < least Then
+          Set least = mostRecent
+       End If
+    End If
+    Set counter = counter + 1
+    Input mostRecent
+End While
+Display "The biggest possible range of these numbers is ", least, " and ", greatest, "."
