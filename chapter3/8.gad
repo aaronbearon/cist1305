@@ -2,7 +2,7 @@ Declare Integer points
 Display "How many points did you get?"
 Input points
 If points < 9 OR points > 51 Then
-   Display "Invalid points."
+	Display "Invalid points."
 Else
-   Display "Valid points."
+	Display "Valid points."
 End If

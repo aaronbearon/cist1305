@@ -2,7 +2,7 @@ Declare Integer x, y, z
 Display "What's the value of x?"
 Input x
 If x > 100 Then
-   Set y = 20
-   Set z = 40
+	Set y = 20
+	Set z = 40
 End If
 Display "x=", x, " y=", y, " z=", z

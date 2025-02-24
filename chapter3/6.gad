@@ -1,14 +1,14 @@
 Declare Integer selection
 Input selection
 Select selection
-   Case 1:
-      Display "You selected A."
-   Case 2:
-      Display "You selected 2."
-   Case 3:
-      Display "You selected 3."
-   Case 4:
-      Display "You selected 4."
-   Default:
-      Display "Not good with numbers, eh?"
+	Case 1:
+		Display "You selected A."
+	Case 2:
+		Display "You selected 2."
+	Case 3:
+		Display "You selected 3."
+	Case 4:
+		Display "You selected 4."
+	Default:
+		Display "Not good with numbers, eh?"
 End Select

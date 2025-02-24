@@ -3,12 +3,12 @@ Display "What's the value of the first amount?"
 Input amount1
 Display "What's the value of the second amount?"
 Input amount2
-If amount1 > 10 Then 
-   If amount2 < 100 Then
-      If amount1 > amount2 Then
-         Display "First amount: ", amount1
-      Else If amount2 > amount1 Then
-         Display "Second amount: ", amount2
-      End If
-   End If
+If amount1 > 10 Then
+	If amount2 < 100 Then
+		If amount1 > amount2 Then
+			Display "First amount: ", amount1
+Else If amount2 > amount1 Then
+			Display "Second amount: ", amount2
+		End If
+	End If
 End If

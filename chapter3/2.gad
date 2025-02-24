@@ -2,7 +2,7 @@ Declare Integer a, b, c
 Display "What's the value of a?"
 Input a
 If a < 10 Then
-   Set b = 0
-   Set c = 1
+	Set b = 0
+	Set c = 1
 End If
 Display "a=", a, " b=", b, " c=", c

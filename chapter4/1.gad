@@ -2,6 +2,6 @@ Declare Integer x
 Display "What's the value of x?"
 Input x
 While x > 0
-  Display x
-  Set x = x - 1
+	Display x
+	Set x = x - 1
 End While

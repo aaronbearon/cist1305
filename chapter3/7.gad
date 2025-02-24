@@ -1,8 +1,8 @@
 Declare Integer speed
 Display "What's your speed?"
 Input speed
-If speed >= 24 AND speed <= 56 Then
-   Display "Speed is normal."
+If speed > 24 AND speed <= 56 Then
+	Display "Speed is normal."
 Else
-   Display "Speed is abnormal."
+	Display "Speed is abnormal."
 End If
