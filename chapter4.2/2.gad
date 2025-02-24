@@ -1,22 +1,28 @@
+// CIST 1305 Lab 6: Largest and Smallest pseudocode
+// Aaron Blum
+
 Declare Integer mostRecent, greatest, least, counter
+
+// Input numbers from the user til they enter -99
+// Save the largest and smallest as we loop
 Display "Type a list of numbers (hitting enter between each one)."
 Display "Type -99 when you're done."
 Set counter = 0
 Do
-    Input mostRecent
-    If mostRecent != -99 Then
-       If counter == 0 Then
-          Set greatest = mostRecent
-          Set least = mostRecent
-       Else
-          If mostRecent > greatest Then
-             Set greatest = mostRecent
-          End If
-          If mostRecent < least Then
-             Set least = mostRecent
-          End If
-       End If
-       Set counter = counter + 1
-    End If
+	Input mostRecent
+	If mostRecent != -99 Then
+		If counter == 0 OR mostRecent > greatest Then
+			Set greatest = mostRecent
+		End If
+		If counter == 0 OR mostRecent < least Then
+			Set least = mostRecent
+		End If
+		Set counter = counter + 1
+	End If
 While mostRecent != -99
-Display "The biggest possible range of these numbers is ", least, " and ", greatest, "."
+
+If counter > 0 Then
+	Display "The smallest number is ", least, " and the largest number is ", greatest, "."
+Else
+	Display "No values entered."
+End If

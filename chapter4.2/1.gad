@@ -1,11 +1,26 @@
-Declare Integer days
-Declare Real totalAmount, dayNumber, salary
+// CIST 1305 Lab 6: Pennies for Pay pseudocode
+// Aaron Blum
+
+Declare Integer days, dayNumber
+Declare Real totalAmount, salary
+Declare String Tab
+Set Tab = "        "
 Set totalAmount = 0
+
 Display "Enter the number of days you work."
 Input days
+
+// Display a salary table
+Display ""
+Display "Day", Tab, "Salary"
+Display "----------------------"
+
+// Salary starts at $0.01 and increases exponentially each day.
 For dayNumber = 1 To days
-    Set salary = 2^(dayNumber - 1)
-    Display "Day ", dayNumber, " income: $", salary / 100
-    Set totalAmount = salary + totalAmount
+	Set salary = 2^(dayNumber - 1)
+	Display dayNumber, Tab, "$", salary / 100
+	Set totalAmount = salary + totalAmount
 End For
-Display "In total, you've made $", totalAmount / 100, "."
+
+Display "----------------------"
+Display "TOTAL", Tab, "$", totalAmount / 100
