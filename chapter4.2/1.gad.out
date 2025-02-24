@@ -1,22 +1,26 @@
 Enter the number of days you work.
-integer> Day 1 income: $0.01
-Day 2 income: $0.02
-Day 3 income: $0.04
-Day 4 income: $0.08
-Day 5 income: $0.16
-Day 6 income: $0.32
-Day 7 income: $0.64
-Day 8 income: $1.28
-Day 9 income: $2.56
-Day 10 income: $5.12
-Day 11 income: $10.24
-Day 12 income: $20.48
-Day 13 income: $40.96
-Day 14 income: $81.92
-Day 15 income: $163.84
-Day 16 income: $327.68
-Day 17 income: $655.36
-Day 18 income: $1310.72
-Day 19 income: $2621.44
-Day 20 income: $5242.88
-In total, you've made $10485.75.
+integer> 
+Day     Salary
+----------------------
+1       $0.01
+2       $0.02
+3       $0.04
+4       $0.08
+5       $0.16
+6       $0.32
+7       $0.64
+8       $1.28
+9       $2.56
+10      $5.12
+11      $10.24
+12      $20.48
+13      $40.96
+14      $81.92
+15      $163.84
+16      $327.68
+17      $655.36
+18      $1310.72
+19      $2621.44
+20      $5242.88
+----------------------
+TOTAL   $10485.75
