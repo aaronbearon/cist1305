@@ -1,0 +1,48 @@
+// CIST 1305 Lab 7: Stadium Tickets
+// Aaron Blum, 20250309
+
+Module main()
+	Declare Integer total = 0
+	Call doTicketClass(total, "A")
+	Call doTicketClass(total, "B")
+	Call doTicketClass(total, "C")
+	Display "The total amount of sales generated is $", total, "."
+End Module
+
+Module doTicketClass(Integer Ref total, String type)
+	Declare Integer tickets, sales
+	Call inputTickets(tickets, type)
+	Call computeSales(sales, tickets, type)
+	Call printSales(sales, type)
+	Set total = total + sales
+End Module
+
+Module inputTickets(Integer Ref tickets, String type)
+	Do
+		Display "How many Class ", type, " tickets were sold?"
+		Input tickets
+		// Just checking to ensure that the input is at or above zero.
+		If tickets < 0 Then
+			Display "The stadium can't sell negative ticket amounts."
+		End If
+	While tickets < 0
+End Module
+
+Module computeSales(Integer Ref sales, Integer tickets, String type)
+	Select type
+		Case "A":
+			Set sales = tickets * 15
+		Case "B":
+			Set sales = tickets * 12
+		Case "C":
+			Set sales = tickets * 9
+		Default:
+			// This should never happen.
+			// This only runs when there's a bug in the program.
+			Display "Error unknown type ", type, "!"
+	End Select
+End Module
+
+Module printSales(Integer sales, String type)
+	Display "Class ", type, " tickets sold for $", sales, "."
+End Module

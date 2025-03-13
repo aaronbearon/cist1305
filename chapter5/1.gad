@@ -1,3 +1,27 @@
+// CIST 1305 Lab 7: Recommended Property Insurance
+// Aaron Blum, 20250309
+
 Module main()
-	Display 1
+	// We need a variable which equals the total cost to replace the property structure.
+	Declare Real replacement
+	Call inputCost(replacement)
+	// Let's call the module that should print the recommended amount of insurance.
+	Call printInsurance(replacement)
+End Module
+
+Module inputCost(Real Ref cost)
+	Do
+		Display "What's the replacement cost of your property?"
+		Input cost
+		// Just checking to ensure that the input is above zero.
+		If cost <= 0 Then
+			Display "Error: must be > 0"
+		End If
+	While cost <= 0
+End Module
+
+Module printInsurance(Real cost)
+	Declare Real ensureAmount
+	Set ensureAmount = cost * 0.8
+	Display "You should buy atleast $", ensureAmount, " In property insurance."
 End Module
