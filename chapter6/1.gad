@@ -1,32 +1,62 @@
-Module main()
+// There are 5 tests. That's why testCount is set to 5.
+Constant Integer testCount = 5
 
+Module main()
+	// Keep a running total starting at 0.
+	Declare Integer total = 0
+
+	// Input all the scores from the user first.
+	Display "Please enter your test scores."
+	Declare Integer counter
+	For counter = 1 To testCount
+		// Input the next score from the user with a nice prompt.
+		// The most recently entered score is added to what the total already was,
+		// in order to update the total.
+		Display (testCount - counter + 1), " more:"
+		Set total = total + inputScore()
+	End For
+
+	Call printSummary(total, testCount)
 End Module
 
-Function Real getscore(Integer score, Integer type)
-	Declare String grade
-	Do
-		Input score
-		If score < 0 OR score > 100 Then
-			Display "Error, please enter a score within 0 and 100."
-		End If
-	While score < 0 OR score > 100
-	Set grade = determineGrade(score)
-	Return score
+// Calculate and print the final letter grade and average.
+Module printSummary(Integer total, Integer count)
+	Declare Real average = computeAverage(total, testCount)
+	Display "Average score: ", average
+	Display "Final grade: ", determineGrade(average)
+End Module
+
+// Since the total divided by count may not be an exact integer,
+// the finalTotal variable needs to be a Real type,
+// in order to avoid throwing away the fractional part.
+Function Real computeAverage(Integer total, Integer count)
+	Return toReal(total) / toReal(count)
 End Function
 
-Function String determineGrade(Integer score)
-	If score > 0 AND score < 60 Then
-		Return "F"
-Else If score > 60 AND score < 70 Then
-		Return "D"
-Else If score > 70 AND score < 80 Then
-		Return "C"
-Else If score > 80 AND score < 90 Then
-		Return "B"
-Else If score > 90 AND score < 100 Then
-		Return "A"
-	Else
-		Return "A+"
-	End If
+Function Integer inputScore()
+	Declare Integer score
+	Do
+		Input score
+		// This If statement is for input validation.
+		If score >= 0 AND score <= 100 Then
+			// Display the grade and return the score.
+			Display "Grade: ", determineGrade(score)
+			Return score
+		End If
+		Display "Error, please enter a score within 0 and 100."
+	While True
+End Function
 
+Function String determineGrade(Real score)
+	If score < 60 Then
+		Return "F"
+	Else If score < 70 Then
+		Return "D"
+	Else If score < 80 Then
+		Return "C"
+	Else If score < 90 Then
+		Return "B"
+	Else
+		Return "A"
+	End If
 End Function

@@ -1,0 +1,13 @@
+Please enter your test scores.
+5 more:
+integer> Grade: A
+4 more:
+integer> Grade: A
+3 more:
+integer> Grade: A
+2 more:
+integer> Grade: B
+1 more:
+integer> Grade: A
+Average score: 92.6
+Final grade: A
