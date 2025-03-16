@@ -1,0 +1,68 @@
+Module main()
+	Call getInput()
+End Module
+
+Module getInput()
+	Declare Real balance
+	Display "What was your starting balance? $"
+	Call inputReal(balance)
+	Declare Real annualRate
+	Display "What's your annual interest rate (in percent)?"
+	Call inputReal(annualRate)
+	Set annualRate = annualRate / 100
+	Declare Integer months
+	Display "How many months has your account been open for?"
+	Call inputInteger(months)
+	Call calculateByMonth(balance, annualRate / 12, months)
+End Module
+
+Module calculateByMonth(Real balance, Real monthlyRate, Integer monthsActive)
+	Declare Real deposit, withdrawal, interest, totalDeposits = 0, totalWithdrawals = 0, totalInterest = 0
+	Declare Integer counter
+	For counter = 1 To monthsActive
+		Display "In month #", counter, ", how much money did you deposit in total? $"
+		Call inputReal(deposit)
+		Set totalDeposits = totalDeposits + deposit
+
+		Display "In that same month, how much did you withdraw from your account?"
+		Call inputReal(withdrawal)
+		Set totalWithdrawals = totalWithdrawals + withdrawal
+
+		// simple balance adjustment
+		Set balance = balance + deposit - withdrawal
+		Set interest = balance * monthlyRate
+		// now compute interest at end of month
+		Set balance = balance + interest
+		Set totalInterest = totalInterest + interest
+
+		Display "Your total balance as of month #", counter, " was ", balance, "."
+		Display
+	End For
+	Call showOutput(balance, totalDeposits, totalWithdrawals, totalInterest)
+End Module
+
+Module showOutput(Real balance, Real totalDeposits, Real totalWithdrawals, Real totalInterest)
+	Display "In total:"
+	Display "You earned $", totalInterest, " in interest."
+	Display "You deposited $", totalDeposits, " into your account."
+	Display "You withdrew $", totalWithdrawals, " from your account."
+	Display "Your final balance is $", balance, "."
+End Module
+
+Module inputInteger(Integer Ref val)
+	Do
+		Input val
+		If val < 0 Then
+			Display "Error: Please enter a non-negative number."
+		End If
+	While val < 0
+End Module
+
+Module inputReal(Real Ref val)
+	Do
+		Input val
+		If val < 0 Then
+			Display "Error: Please enter a non-negative number."
+		End If
+	While val < 0
+End Module
