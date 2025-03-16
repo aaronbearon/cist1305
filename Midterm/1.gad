@@ -1,0 +1,99 @@
+// Main module to simulate bank account.
+Module main()
+	Declare Integer months
+	Declare Real balance, monthlyRate
+	Call getInputs(balance, monthlyRate, months)
+
+	Declare Real totalDeposits = 0, totalWithdrawals = 0, totalInterest = 0
+	Declare Integer month
+	For month = 1 To months
+		Call handleTransactions(month, balance, totalDeposits, totalWithdrawals)
+		Call handleInterest(balance, monthlyRate, totalInterest)
+	End For
+	Call showOutput(balance, totalDeposits, totalWithdrawals, totalInterest)
+End Module
+
+// Module to get initial account information from the user.
+Module getInputs(Real Ref balance, Real Ref monthlyRate, Integer Ref months)
+	Declare Real balanceReal, annualRate
+	Display "What was your starting balance? $"
+	Set balance = inputNonnegativeReal()
+	Display "What's your annual interest rate (in percent)?"
+	Set annualRate = inputNonnegativeReal()
+	Set annualRate = annualRate / 100
+	Set monthlyRate = annualRate / 12 // Convert annual rate to monthly rate.
+	Display "How many months has your account been open for?"
+	Set months = inputNonnegativeInteger()
+End Module
+
+// Module to handle deposits and withdrawals for a single month.
+Module handleTransactions(Integer month, Real Ref balance, Real Ref totalDeposits, Real Ref totalWithdrawals)
+	Declare Real deposit, withdrawal
+
+	Declare Boolean done = False
+	Do
+		Display "In month #", month, ", how much money did you deposit in total? $"
+		Set deposit = inputNonnegativeReal()
+
+		Display "In that same month, how much did you withdraw from your account?"
+		Set withdrawal = inputNonnegativeReal()
+
+			// Check if the balance remains non-negative after transactions.
+			If balance + deposit - withdrawal > 0 Then
+			Set totalDeposits = totalDeposits + deposit
+			Set totalWithdrawals = totalWithdrawals + withdrawal
+			Set balance = balance + deposit - withdrawal
+			Set done = True
+		End If
+
+		If NOT done Then
+			Display "Error: please make sure your balance doesn't fall below zero."
+		End If
+	Until done
+End Module
+
+// Module to calculate and apply monthly interest.
+Module handleInterest(Real Ref balance, Real monthlyRate, Real Ref totalInterest)
+	// now compute interest at end of month
+	Declare Real interest = balance * monthlyRate
+	Set balance = balance + interest
+	Set totalInterest = totalInterest + interest
+End Module
+
+// Module to display the final account summary.
+Module showOutput(Real balance, Real totalDeposits, Real totalWithdrawals, Real totalInterest)
+	// User currencyFormat to nicely display dollars and cents.
+	Display "In total:"
+	Display "You earned ", currencyFormat(totalInterest), " in interest."
+	Display "You deposited ", currencyFormat(totalDeposits), " into your account."
+	Display "You withdrew ", currencyFormat(totalWithdrawals), " from your account."
+	Display "Your final balance is ", currencyFormat(balance), "."
+End Module
+
+// Function to get a non-negative integer input from the user.
+Function Integer inputNonnegativeInteger()
+	Declare Integer val
+	 // Loop until valid input is given.
+	 Do
+		Input val
+		// Check input valid.
+		If val > 0 Then
+			Return val 
+		End If
+		Display "Error, please enter a non-negative number."
+	While True // Loop until valid input is given.
+End Function
+
+// Function to get a non-negative real input from the user.
+Function Real inputNonnegativeReal()
+	Declare Real val
+	 // Loop until valid input is given.
+	 Do
+		Input val
+		// Check input valid.
+		If val > 0 Then
+			Return val
+		End If
+		Display "Error, please enter a non-negative number."
+	While True
+End Function
