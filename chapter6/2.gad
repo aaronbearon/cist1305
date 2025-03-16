@@ -1,0 +1,102 @@
+Module main()
+	Display "Welcome to Rock Paper Scissors."
+	// This function call will happen atleast once.
+	// Depending on the boolean value,
+	// it will either break out or check the condition again
+	// through function call.
+	While runGame()
+	End While
+End Module
+
+Function Boolean runGame()
+	Display "--------------------------------------"
+	Display "Please enter one of the three choices"
+	Display "and the computer will enter one of it's own."
+	Declare Integer comChoice = getComputerChoice()
+	Declare Integer humanChoice = getPlayerChoice()
+	Display "You chose ", toChoiceString(humanChoice), "."
+	Display "The computer chose ", toChoiceString(comChoice), "."
+	Display getResult(humanChoice, comChoice)
+	// Return true with a tie.
+	// Return false otherwise.
+	Return humanChoice == comChoice
+End Function
+
+Function Integer getComputerChoice()
+	Return random(1, 3)
+End Function
+
+Function Integer getPlayerChoice()
+	Declare String humanChoice
+	Do
+		Input humanChoice
+		Select toLower(humanChoice)
+			Case "rock":
+				Return 1
+			Case "paper":
+				Return 2
+			Case "scissors":
+				Return 3
+			Default:
+				Display "Nice try, invalid item."
+		End Select
+	While True
+End Function
+
+Function String toChoiceString(Integer choice)
+	Select choice
+		Case 1:
+			Return "rock"
+		Case 2:
+			Return "paper"
+		Case 3:
+			Return "scissors"
+		Default:
+			// This only runs when something's wrong with the program.
+			// That's why this should never run.
+			Return "error"
+	End Select
+End Function
+
+Function String getResult(Integer human, Integer computer)
+	// For example: human paper(2) - computer rock(1) + 3 = 4
+	// The remainder of 4/3 = 1
+	// That case means the human beats the computer.
+	Declare Integer result = (human - computer + 3) MOD 3
+	Select result
+		Case 0:
+			Return "TIE! You will play another round."
+		Case 1:
+			Return "You won against the computer! :-)"
+		Case 2:
+			Return "You lost to the computer. :-("
+		Default:
+			// Never display error.
+			Return "error"
+	End Select
+End Function
+
+// --- END MAIN PROGRAM, NO SUBMIT --- //
+
+Constant Boolean runTest = False
+
+// Just for debugging, make sure that getResult logic is correct.
+Module testResult(Integer human, Integer computer)
+	Display "Human=", toChoiceString(human), "; Computer=", toChoiceString(computer)
+	Display getResult(human, computer)
+End Module
+
+// I wrote this module to test that getResult.
+Module testResultsAccurate()
+	Declare Integer i, j
+	For i = 1 To 3
+		For j = 1 To 3
+			Call testResult(i, j)
+		End For
+		Display
+	End For
+End Module
+
+If runTest Then
+	Call testResultsAccurate()
+End If
