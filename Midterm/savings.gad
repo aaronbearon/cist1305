@@ -21,9 +21,9 @@ Module getInputs(Real Ref balance, Real Ref monthlyRate, Integer Ref months)
 	Declare Real annualRate
 	Display "What was your starting balance? $"
 	Set balance = inputNonnegativeReal()
-	Display "What's your annual interest rate (in percent)?"
+	Display "What is your annual interest rate? %"
 	Set annualRate = inputNonnegativeReal()
-	Set annualRate = annualRate / 100
+	Set annualRate = annualRate / 100 // Convert to a percentage
 	Set monthlyRate = annualRate / 12 // Convert annual rate to monthly rate.
 	Display "How many months has your account been open for?"
 	Set months = inputNonnegativeInteger()
@@ -35,10 +35,10 @@ Module handleTransactions(Integer month, Real Ref balance, Real Ref totalDeposit
 
 	Declare Boolean done = False
 	Do
-		Display "In month #", month, ", how much money did you deposit in total? $"
+		Display "In month #", month, ", how much money in total did you deposit? $"
 		Set deposit = inputNonnegativeReal()
 
-		Display "In that same month, how much did you withdraw from your account?"
+		Display "In month #", month, ", how much money in total did you withdraw? $"
 		Set withdrawal = inputNonnegativeReal()
 
 		// Check if the balance remains non-negative after transactions.
@@ -50,7 +50,7 @@ Module handleTransactions(Integer month, Real Ref balance, Real Ref totalDeposit
 		End If
 
 		If NOT done Then
-			Display "Error: please make sure your balance doesn't fall below zero."
+			Display "Error: Please make sure your balance doesn't fall below zero."
 		End If
 	Until done
 End Module
@@ -83,8 +83,8 @@ Function Integer inputNonnegativeInteger()
 		If val >= 0 Then
 			Return val
 		End If
-		Display "Error, please enter a non-negative number."
-	While True // Loop until valid input is given.
+		Display "Error: Please enter a non-negative number."
+	While True
 End Function
 
 // Function to get a non-negative real input from the user.
@@ -97,6 +97,6 @@ Function Real inputNonnegativeReal()
 		If val >= 0 Then
 			Return val
 		End If
-		Display "Error, please enter a non-negative number."
+		Display "Error: Please enter a non-negative number."
 	While True
 End Function
