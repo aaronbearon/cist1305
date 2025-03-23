@@ -1,0 +1,141 @@
+// Garbage begins...
+Module garbage()
+    // This is a sample to prove
+    // that arrays actually work.
+    Declare Integer nums[3] = 5, 7, 9
+    // Arrays are zero based.
+    // So, the 2 displays the number
+    // in the 3rd location (which is 9).
+    Display nums[2]
+End Module
+// ...garbage ends.
+
+Module main()
+    Call problemOne()
+    Call problemTwo()
+	Call problemThree()
+    // Problems 4-6 are flowcharts.
+    Call problemSeven()
+    Call problemEight()
+    Call problemNine()
+End Module
+
+Module problemOne()
+    Constant Integer SIZE = 4
+	Declare String names[SIZE] = "Einstein", "Newton", "Copernicus", "Kepler"
+End Module
+
+Module problemTwo()
+	Constant Integer SIZE = 20
+	Declare Integer names[SIZE]
+	Declare Integer index
+	For index = 0 To SIZE - 1
+		Set names[index] = index + 1
+		Display names[index]
+	End For
+End Module
+
+Module problemThree()
+	Constant Integer SIZE = 100
+	Declare Integer numberArray1[SIZE]
+	Declare Integer numberArray2[SIZE]
+	Declare Integer index = 0
+	For index = 0 To SIZE - 1
+		Set numberArray1[index] = index + 1
+	End For
+    For index = 0 To SIZE - 1
+        Set numberArray2[index] = numberArray1[index]
+    End For
+End Module
+
+// Problems 4-6 are flowcharts.
+
+Module ProblemFour()
+    Constant Integer SIZE = 100
+    Declare Integer array[SIZE]
+
+    Declare Integer i = 0
+    For i = 0 To SIZE - 1
+        Set array[i] = i + 1
+    End For
+
+    Declare Integer total = 0
+    Declare Integer index
+    If SIZE > 0 Then
+        For index = 0 To SIZE - 1
+            Set total = total + array[index]
+        End For
+    Else
+        Display "Error, invalid size."
+    End If
+
+End Module
+
+Module ProblemFive()
+    Constant Integer SIZE = 100
+    Declare Integer array[SIZE]
+
+    Declare Integer highest = array[0]
+    Declare Integer index = 0
+    For index = 0 To SIZE - 1
+        If array[index] > highest Then
+            Set highest = array[index]
+        End If
+    End For
+
+End Module
+
+Module ProblemSix()
+    Constant Integer SIZE = 100
+    Declare Integer array[SIZE]
+
+    Declare Integer lowest = array[0]
+    Declare Integer index = 0
+    For index = 0 To SIZE - 1
+        If array[index] < lowest Then
+            Set lowest = array[index]
+        End If
+    End For
+
+End Module
+
+Module problemSeven()
+	Constant Integer SIZE = 100
+	Declare Integer firstArray[SIZE]
+	Declare Integer secondArray[SIZE]
+	Declare Integer index
+	For index = 0 To SIZE - 1
+		Set firstArray[index] = index + 1
+	End For
+    For index = 0 To SIZE - 1
+        Set secondArray[index] = firstArray[index]
+    End For
+End Module
+
+Module problemEight()
+    Constant Integer SIZE = 20
+    Declare Integer array[SIZE]
+    Declare Integer index
+    For index = 0 To SIZE - 1
+        Set array[index] = index + 1
+    End For
+    Display acceptArray(array, SIZE)
+End Module
+
+Function Integer acceptArray(Integer newArray[], Integer SIZE)
+    Declare Integer total = 0
+	Declare Integer index
+    For index = 0 To SIZE - 1
+        Set total = total + newArray[index]
+    End For
+    Return total
+End Function
+
+Module problemNine()
+    Constant Integer SIZE = 10
+    Declare Integer values[SIZE] = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+    Declare Integer num
+    // For Each num In values
+    //     Display num
+    // End For
+End Module
