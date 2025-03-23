@@ -22,30 +22,44 @@ End Module
 
 Module problemOne()
     Constant Integer SIZE = 4
+
+    // start here
 	Declare String names[SIZE] = "Einstein", "Newton", "Copernicus", "Kepler"
+    // end here
+
 End Module
 
 Module problemTwo()
 	Constant Integer SIZE = 20
 	Declare Integer names[SIZE]
+
+    // start here
+    // Below is an array
+    // for SIZE 20.
 	Declare Integer index
 	For index = 0 To SIZE - 1
 		Set names[index] = index + 1
 		Display names[index]
 	End For
+    // end here
+
 End Module
 
 Module problemThree()
 	Constant Integer SIZE = 100
 	Declare Integer numberArray1[SIZE]
 	Declare Integer numberArray2[SIZE]
-	Declare Integer index = 0
+	Declare Integer index
 	For index = 0 To SIZE - 1
 		Set numberArray1[index] = index + 1
 	End For
+
+    // start here
     For index = 0 To SIZE - 1
         Set numberArray2[index] = numberArray1[index]
     End For
+    // end here
+
 End Module
 
 // Problems 4-6 are flowcharts.
@@ -59,15 +73,10 @@ Module ProblemFour()
         Set array[i] = i + 1
     End For
 
-    Declare Integer total = 0
-    Declare Integer index
-    If SIZE > 0 Then
-        For index = 0 To SIZE - 1
-            Set total = total + array[index]
-        End For
-    Else
-        Display "Error, invalid size."
-    End If
+    Declare Integer index, total = 0
+    For index = 0 To SIZE - 1
+        Set total = total + array[index]
+    End For
 
 End Module
 
@@ -75,10 +84,11 @@ Module ProblemFive()
     Constant Integer SIZE = 100
     Declare Integer array[SIZE]
 
-    Declare Integer highest = array[0]
-    Declare Integer index = 0
+    Declare Integer highest, index
     For index = 0 To SIZE - 1
-        If array[index] > highest Then
+        If index == 0 Then
+            Set highest = array[0]
+        Else If array[index] > highest Then
             Set highest = array[index]
         End If
     End For
@@ -89,10 +99,11 @@ Module ProblemSix()
     Constant Integer SIZE = 100
     Declare Integer array[SIZE]
 
-    Declare Integer lowest = array[0]
-    Declare Integer index = 0
+    Declare Integer lowest, index
     For index = 0 To SIZE - 1
-        If array[index] < lowest Then
+        If index == 0 Then
+            Set lowest = array[0]
+        Else If array[index] < lowest Then
             Set lowest = array[index]
         End If
     End For
@@ -107,9 +118,13 @@ Module problemSeven()
 	For index = 0 To SIZE - 1
 		Set firstArray[index] = index + 1
 	End For
+
+    // start here
     For index = 0 To SIZE - 1
         Set secondArray[index] = firstArray[index]
     End For
+    // end here
+
 End Module
 
 Module problemEight()
@@ -119,14 +134,14 @@ Module problemEight()
     For index = 0 To SIZE - 1
         Set array[index] = index + 1
     End For
-    Display acceptArray(array, SIZE)
+    Display sumArray(array, SIZE)
 End Module
 
-Function Integer acceptArray(Integer newArray[], Integer SIZE)
+Function Integer sumArray(Integer array[], Integer SIZE)
     Declare Integer total = 0
 	Declare Integer index
     For index = 0 To SIZE - 1
-        Set total = total + newArray[index]
+        Set total = total + array[index]
     End For
     Return total
 End Function
@@ -134,8 +149,12 @@ End Function
 Module problemNine()
     Constant Integer SIZE = 10
     Declare Integer values[SIZE] = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+
+    // start here
     Declare Integer num
-    // For Each num In values
-    //     Display num
-    // End For
+    For Each num In values
+        Display num
+    End For
+    // end here
+    
 End Module
