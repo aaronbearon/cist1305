@@ -1,0 +1,24 @@
+Module main()
+	Constant Integer SIZE = 7
+	Declare Integer lotteryNum[SIZE]
+	Call initVals(lotteryNum, SIZE)
+	Call printVals(lotteryNum, SIZE)
+End Module
+
+Module initVals(Integer Ref array[], Integer SIZE)
+	Declare Integer index
+
+	// This loop fills each slot with a random digit.
+	For index = 0 To SIZE - 1
+		Set array[index] = random(0, 9)
+	End For
+End Module
+
+Module printVals(Integer Ref array[], Integer SIZE)
+	Declare Integer index
+
+    // This loop displays each slot's digit in order.
+	For index = 0 To SIZE - 1
+		Display array[index]
+	End For
+End Module
