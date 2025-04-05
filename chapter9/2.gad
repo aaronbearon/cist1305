@@ -11,6 +11,7 @@ Module main()
 	Declare Integer values[ROWS][COLS]
 	Call initTable(values)
 	// This displays the reference table.
+	// The table won't look right with multi-digit numbers.
 	If MAX < 10 Then
 		Call debugPrintTable(values)
 	End If
@@ -52,7 +53,6 @@ Function Boolean isSaddlePoint(Integer values[][], Integer row, Integer col)
 End Function
 
 Function Integer lowestInRow(Integer values[][], Integer row)
-	// A checkMin variable is needed in case the newMin variable is changed.
 	Declare Integer c, minInRow = values[row][0]
 	For c = 0 To COLS - 1
 		If values[row][c] < minInRow Then
@@ -63,7 +63,6 @@ Function Integer lowestInRow(Integer values[][], Integer row)
 End Function
 
 Function Integer highestInColumn(Integer values[][], Integer col)
-	// A checkMax variable is needed in case the newMax variable is changed.
 	Declare Integer r, maxInCol = values[0][col]
 	For r = 0 To ROWS - 1
 		If values[r][col] > maxInCol Then
@@ -73,6 +72,7 @@ Function Integer highestInColumn(Integer values[][], Integer col)
 	Return maxInCol
 End Function
 
+// This is the module for displaying the reference table.
 Module debugPrintTable(Integer values[][])
 	Declare Integer row, col
 
