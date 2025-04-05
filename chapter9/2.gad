@@ -1,71 +1,94 @@
-// Since array sizes can't be changed,
-// these constants can also be global constants.
-// There for,
-// these constants don't have to be passed as arguments to modules or functions.
+// Since array sizes can't be changed, these constants can also be global constants.
+// Therefore, these constants don't have to be passed as arguments to modules or functions.
 Constant Integer ROWS = 7
 Constant Integer COLS = 7
 
+Constant Integer MAX = 9
+// These are the numbers for printing the reference table.
+Constant String digits = "0123456789"
+
 Module main()
 	Declare Integer values[ROWS][COLS]
-	Call initArray(values)
+	Call initTable(values)
+	// This displays the reference table.
+	If MAX < 10 Then
+		Call debugPrintTable(values)
+	End If
 	Call printSaddlePoints(values)
 End Module
 
-Module initArray(Integer Ref values[][])
+Module initTable(Integer Ref values[][])
 	Declare Integer row, col
 	For row = 0 To ROWS - 1
 		For col = 0 To COLS - 1
-			Set values[row][col] = random(0, 9)
+			Set values[row][col] = random(0, MAX)
 		End For
 	End For
 End Module
 
-Module printSaddlePoints(Integer Ref values[][])
+Module printSaddlePoints(Integer values[][])
 	Declare Integer row, col = 0
-	For row = 0 To ROWS - 1
-		Display values[row][col], values[row][col + 1], values[row][col + 2], values[row][col + 3], values[row][col + 4], values[row][col + 5], values[row][col + 6]
-	End For
+	Display
 	Display "Here are the following saddle points:"
-	Display "If you don't see any, there are none."
+	Declare Boolean found = False
+	// Loop to display the saddle points (if any).
 	For row = 0 To ROWS - 1
 		For col = 0 To COLS - 1
 			If isSaddlePoint(values, row, col) Then
-				Display "(Column ", col + 1, ", Row ", row + 1, ") = ", values[row][col]
+				Display "Found (Row ", row + 1, ", Column ", col + 1, ") = ", values[row][col]
+				Set found = True
 			End If
 		End For
 	End For
+	If NOT found Then
+		Display "None found!"
+	End If
 End Module
 
-Function Boolean isSaddlePoint(Integer Ref values[][], Integer row, Integer col)
-
-	// Just checking that the value is both the lowest in the row and the highest in the column
-	Return isLowestInRow(values, row, col) AND isHighestInColumn(values, row, col)
+Function Boolean isSaddlePoint(Integer values[][], Integer row, Integer col)
+	// Just checking that the value is both the lowest in the row and the highest in the column.
+	Declare Integer val = values[row][col]
+	Return val == lowestInRow(values, row) AND val == highestInColumn(values, col)
 End Function
 
-Function Boolean isLowestInRow(Integer Ref values[][], Integer row, Integer col)
-	Declare Integer c, checkMinInRow = values[row][col], newMinInRow = checkMinInRow
+Function Integer lowestInRow(Integer values[][], Integer row)
+	// A checkMin variable is needed in case the newMin variable is changed.
+	Declare Integer c, minInRow = values[row][0]
 	For c = 0 To COLS - 1
-		If values[row][c] < newMinInRow Then
-			Set newMinInRow = values[row][c]
+		If values[row][c] < minInRow Then
+			Set minInRow = values[row][c]
 		End If
 	End For
-	If newMinInRow == checkMinInRow Then
-		Return True
-	Else
-		Return False
-	End If
+	Return minInRow
 End Function
 
-Function Boolean isHighestInColumn(Integer Ref values[][], Integer row, Integer col)
-	Declare Integer r, checkMaxInCol = values[row][col], newMaxInCol = checkMaxInCol
+Function Integer highestInColumn(Integer values[][], Integer col)
+	// A checkMax variable is needed in case the newMax variable is changed.
+	Declare Integer r, maxInCol = values[0][col]
 	For r = 0 To ROWS - 1
-		If values[r][col] > newMaxInCol Then
-			Set newMaxInCol = values[r][col]
+		If values[r][col] > maxInCol Then
+			Set maxInCol = values[r][col]
 		End If
 	End For
-	If newMaxInCol == checkMaxInCol Then
-		Return True
-	Else
-		Return False
-	End If
+	Return maxInCol
 End Function
+
+Module debugPrintTable(Integer values[][])
+	Declare Integer row, col
+
+	// Create a buffer of the correct size.
+	Declare String buf = ""
+	For col = 0 To COLS - 1
+		Set buf = append(buf, "0")
+	End For
+	Display "Below, is the table for reference."
+	For row = 0 To ROWS - 1
+		For col = 0 To COLS - 1
+			// Translate each cell number to the matching character.
+			// You can pull individual characters from strings.
+			Set buf[col] = digits[values[row][col]]
+		End For
+		// Displays the entire row of numbers in column order.
+		Display buf
+	End For
+End Module
