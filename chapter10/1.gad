@@ -1,0 +1,98 @@
+// CIST 1305 Lab 12: Algorithms from Chapter 10
+// Aaron Blum, 20250410
+
+// Declare OutputFile myFile
+// Open myFile "temp.tmp"
+// Write myFile "Hello"
+// Close myFile
+// Display "done"
+// Delete "temp.tmp"
+
+Module main()
+	// Call problemOne()
+	// Call problemTwo()
+	// Call problemThree()
+	// Call problemFour()
+	// Call problemFive()
+	// Call problemSix()
+	// Call problemSeven()
+	// Call problemEight()
+	// Call problemNine()
+	// Call problemTen()
+End Module
+
+Module problemOne()
+	// File Display algorithm problem
+	Declare InputFile inFile
+	Declare Integer val
+	Open inFile "numbers.dat"
+	While NOT eof(inFile)
+		Read inFile val
+		Display val
+	End While
+	Close inFile
+End Module
+
+Module problemTwo()
+	// Item Counter algorithm problem
+	Declare InputFile inFile
+	Declare String val
+	Declare Integer count = 0
+	Open inFile "names.dat"
+	While NOT eof(inFile)
+		Read inFile val
+		Set count = count + 1
+	End While
+	Display "Total names: ", count, "."
+	Close inFile
+End Module
+
+Module problemThree()
+	// Sum of Numbers algorithm problem
+	Declare InputFile inFile
+	Declare Integer val = 0
+	Declare Integer sum = 0
+	Open inFile "numbers.dat"
+	While NOT eof(inFile)
+		Read inFile val
+		Set sum = sum + val
+	End While
+	Display "Sum: ", sum, "."
+	Close inFile
+End Module
+
+Module problemFour()
+	// Average of Numbers algorithm problem
+	Declare InputFile inFile
+	Declare Integer val = 0
+	Declare Integer sum = 0
+	Declare Integer count = 0
+	Open inFile "numbers.dat"
+	While NOT eof(inFile)
+		Read inFile val
+		Set sum = sum + val
+		Set count = count + 1
+	End While
+	Display "Average: ", toReal(sum) / count, "."
+	Close inFile
+End Module
+
+Module problemFive()
+	// Largest number problem
+	Declare InputFile inFile
+	Declare Integer val = 0
+	Declare Integer max
+	Declare Integer count = 0
+	Open inFile "numbers.dat"
+	While NOT eof(inFile)
+		Read inFile val
+		If count == 0 Then
+			Set max = val
+		Else If val > max Then
+			Set max = val
+		End If
+		Set count = count + 1
+	End While
+	Display "Maximum: ", max, "."
+	Close inFile
+End Module
