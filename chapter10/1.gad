@@ -14,8 +14,9 @@ Module main()
 	// Call problemThree()
 	// Call problemFour()
 	// Call problemFive()
-	// Call problemSix()
-	// Call problemSeven()
+	// Call problemSixPartOne()
+	// Call problemSixPartTwo()
+	Call problemSeven()
 	// Call problemEight()
 	// Call problemNine()
 	// Call problemTen()
@@ -50,8 +51,7 @@ End Module
 Module problemThree()
 	// Sum of Numbers algorithm problem
 	Declare InputFile inFile
-	Declare Integer val = 0
-	Declare Integer sum = 0
+	Declare Integer val = 0, sum = 0
 	Open inFile "numbers.dat"
 	While NOT eof(inFile)
 		Read inFile val
@@ -64,9 +64,7 @@ End Module
 Module problemFour()
 	// Average of Numbers algorithm problem
 	Declare InputFile inFile
-	Declare Integer val = 0
-	Declare Integer sum = 0
-	Declare Integer count = 0
+	Declare Integer val = 0, sum = 0, count = 0
 	Open inFile "numbers.dat"
 	While NOT eof(inFile)
 		Read inFile val
@@ -80,19 +78,69 @@ End Module
 Module problemFive()
 	// Largest number problem
 	Declare InputFile inFile
-	Declare Integer val = 0
-	Declare Integer max
-	Declare Integer count = 0
+	Declare Integer val = 0, max
 	Open inFile "numbers.dat"
+	Read inFile max
 	While NOT eof(inFile)
 		Read inFile val
-		If count == 0 Then
-			Set max = val
-		Else If val > max Then
+		If val > max Then
 			Set max = val
 		End If
-		Set count = count + 1
 	End While
 	Display "Maximum: ", max, "."
 	Close inFile
+End Module
+
+Module problemSixPartOne()
+	// Golf scores problem
+	Declare OutputFile stats
+	Declare Integer count, counter, score
+	Declare String name
+	Display "How many people played golf?"
+	Open stats "golf.dat"
+	// Input validation
+	Do
+		Input count
+	While count <= 0
+	Display "Who played and what were their scores?"
+	For counter = 1 To count
+		Input name
+		Input score
+		Write stats name, score
+	End For
+	Close stats
+	Display "File updated."
+End Module
+
+Module problemSixPartTwo()
+	Declare String name
+	Declare Integer score
+	Declare InputFile stats
+	Open stats "golf.dat"
+	While NOT eof(stats)
+		Read stats name, score
+		Display name, " ", score
+	End While
+	Close stats
+End Module
+
+Module problemSeven()
+	Declare String name, minName
+	Declare Integer score, min
+	Declare InputFile stats
+	Open stats "golf.dat"
+	Read stats minName, min
+	While NOT eof(stats)
+		Read stats name, score
+		If score < min Then
+			Set min = score
+			Set minName = name
+		End If
+	End While
+	Close stats
+	Display "The best golfer is ", minName, "."
+End Module
+
+Module problemEight()
+// code
 End Module
