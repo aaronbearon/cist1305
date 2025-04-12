@@ -1,0 +1,129 @@
+// Since array sizes can't be changed, these constants can also be global constants.
+// Therefore, these constants don't have to be passed as arguments to modules or functions.
+Constant Integer ROWS = 7
+Constant Integer COLS = 7
+
+Constant Integer MAX = 9
+// These are the numbers for printing the reference table.
+Constant String digits = "0123456789"
+Constant Boolean DEBUG = MAX < 10 AND (ROWS * COLS < 100)
+
+Module main()
+	Declare Integer values[ROWS][COLS]
+	Call initTable(values)
+	// This displays the reference table.
+	// The table won't look right with multi-digit numbers.
+	If DEBUG Then
+		Display "Below, is the table for reference."
+		Call debugPrintTable(values)
+		Display
+	End If
+
+	Declare Integer rowMins[ROWS]
+	Call computeRowMins(values, rowMins)
+	If DEBUG Then
+		Display "Row mins:"
+		Call debugPrintArray(rowMins, ROWS)
+		Display
+	End If
+
+	Declare Integer colMaxs[COLS]
+	Call computeColMaxs(values, colMaxs)
+	If DEBUG Then
+		Display "Col maxs:"
+		Call debugPrintArray(colMaxs, COLS)
+		Display
+	End If
+
+	Display "Here are the following saddle points:"
+	Call printSaddlePoints(values, rowMins, colMaxs)
+End Module
+
+Module initTable(Integer Ref values[][])
+	Declare Integer row, col
+	For row = 0 To ROWS - 1
+		For col = 0 To COLS - 1
+			Set values[row][col] = random(0, MAX)
+		End For
+	End For
+End Module
+
+Module printSaddlePoints(Integer values[][], Integer rowMins[], Integer colMaxs[])
+	Declare Integer row, col = 0
+	Declare Boolean found = False
+	// Loop to display the saddle points (if any).
+	For row = 0 To ROWS - 1
+		For col = 0 To COLS - 1
+			Declare Integer val = values[row][col]
+			If val == rowMins[row] AND val == colMaxs[col] Then
+				Display "Found (Row ", row + 1, ", Column ", col + 1, ") = ", values[row][col]
+				Set found = True
+			End If
+		End For
+	End For
+	If NOT found Then
+		Display "None found!"
+	End If
+End Module
+
+Module computeRowMins(Integer table[][], Integer Ref rowMins[])
+	Declare Integer row
+	For row = 0 To ROWS - 1
+		Set rowMins[row] = getRowMin(table, row)
+	End For
+End Module
+
+Module computeColMaxs(Integer table[][], Integer Ref colMaxs[])
+	Declare Integer col
+	For col = 0 To COLS - 1
+		Set colMaxs[col] = getColMax(table, col)
+	End For
+End Module
+
+Function Integer getRowMin(Integer table[][], Integer row)
+	Declare Integer col, min = table[row][0]
+	For col = 1 To ROWS - 1
+		If table[row][col] < min Then
+			Set min = table[row][col]
+		End If
+	End For
+	Return min
+End Function
+
+Function Integer getColMax(Integer table[][], Integer col)
+	Declare Integer row, max = table[0][col]
+	For row = 1 To COLS - 1
+		If table[row][col] > max Then
+			Set max = table[row][col]
+		End If
+	End For
+	Return max
+End Function
+
+// This is the module for displaying the reference table.
+Module debugPrintTable(Integer values[][])
+	Declare Integer row, col
+
+	// Create a buffer of the correct size.
+	Declare String buf = ""
+	For col = 0 To COLS - 1
+		Set buf = append(buf, "0")
+	End For
+	For row = 0 To ROWS - 1
+		Call debugPrintArray(values[row], ROWS)
+	End For
+End Module
+
+Module debugPrintArray(Integer vec[], Integer SIZE)
+	// Create a buffer of the correct size.
+	Declare Integer i
+	Declare String buf = ""
+	For i = 0 To SIZE - 1
+		Set buf = append(buf, "0")
+	End For
+
+	For i = 0 To SIZE - 1
+		Set buf[i] = digits[vec[i]]
+	End For
+	Display buf
+End Module

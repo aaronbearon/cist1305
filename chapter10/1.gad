@@ -16,8 +16,8 @@ Module main()
 	// Call problemFive()
 	// Call problemSixPartOne()
 	// Call problemSixPartTwo()
-	Call problemSeven()
-	// Call problemEight()
+	// Call problemSeven()
+	Call problemEight()
 	// Call problemNine()
 	// Call problemTen()
 End Module
@@ -142,5 +142,29 @@ Module problemSeven()
 End Module
 
 Module problemEight()
-// code
+	Declare Integer currentID, readID
+	Declare Real readSale, salesPerRep = 0, grandTotal = 0
+	Declare InputFile report
+	Open report "BrewsterCars.dat"
+	Read report readID, readSale
+	Set currentID = readID
+	While NOT eof(report)
+		If currentID != readID Then
+			Print "Total sales for this salesperson: ", currencyFormat(salesPerRep)
+			Set currentID = readID
+			Set salesPerRep = 0
+		End If
+		Print currentID, " ", readSale
+		Set salesPerRep = salesPerRep + readSale
+		Set grandTotal = grandTotal + readSale
+		Read report readID, readSale
+	End While
+	Print currentID, " ", readSale
+	Set salesPerRep = salesPerRep + readSale
+	Set grandTotal = grandTotal + readSale
+	Print "Total sales for this salesperson: ", currencyFormat(salesPerRep)
+	Set currentID = readID
+	Set salesPerRep = 0
+	Print "Total of all sales: ", currencyFormat(grandTotal)
+	Close report
 End Module
