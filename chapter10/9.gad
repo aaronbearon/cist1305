@@ -1,0 +1,54 @@
+Module main()
+	Call printHeader()
+	Call printBody()
+End Module
+
+Module printHeader()
+	Display "Gas Prices Per Gallon"
+	Display "Sales Report"
+	Display
+	Display "Date ", Tab, Tab, Tab, "Price"
+	Display "============================================"
+End Module
+
+Module printBody()
+	Declare Integer day, month, year, count = 1
+	Declare Integer minDay, minMonth, minYear
+	Declare Integer maxDay, maxMonth, maxYear
+	Declare Real price, minPrice, maxPrice
+	Declare InputFile report
+	Open report "GasPrices.dat"
+	While NOT eof(report)
+		Read report day, month, year, price
+		If count == 1 Then
+			Set minDay = day
+			Set minMonth = month
+			Set minYear = year
+			Set minPrice = price
+			Set maxDay = day
+			Set maxMonth = month
+			Set maxYear = year
+			Set maxPrice = price
+		End If
+		If price < minPrice Then
+			Set minDay = day
+			Set minMonth = month
+			Set minYear = year
+			Set minPrice = price
+		End If
+		If price > maxPrice Then
+			Set maxDay = day
+			Set maxMonth = month
+			Set maxYear = year
+			Set maxPrice = price
+		End If
+		Set count = count + 1
+		Print day, month, year, Tab, Tab, Tab, currencyFormat(round(price * 1000) / 1000)
+	End While
+	Print "Date with lowest gas prices: ", minDay, minMonth, minYear
+	Print "Lowest price: ", currencyFormat(round(minPrice * 1000) / 1000)
+	Print
+	Print "Date with highest gas prices: ", maxDay, maxMonth, maxYear
+	Print "Highest price: ", currencyFormat(round(maxPrice * 1000) / 1000)
+	Close report
+End Module
