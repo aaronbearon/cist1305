@@ -1,54 +1,47 @@
-Module main()
-	Call printHeader()
-	Call printBody()
-End Module
+// 0-based month names for date display.
+Declare String MONTHS[12] =
+	"January", "February", "March", "April",
+	"May", "June", "July", "August",
+	"September", "October", "November", "December"
 
-Module printHeader()
-	Display "Gas Prices Per Gallon"
-	Display "Sales Report"
-	Display
-	Display "Date ", Tab, Tab, Tab, "Price"
-	Display "============================================"
-End Module
+// We need to declare all the variables including minimums and maximums.
+Declare Integer month, day, year
+Declare Integer minMonth, minDay, minYear
+Declare Integer maxMonth, maxDay, maxYear
+Declare Real price, minPrice, maxPrice
+Declare InputFile report
 
-Module printBody()
-	Declare Integer day, month, year, count = 1
-	Declare Integer minDay, minMonth, minYear
-	Declare Integer maxDay, maxMonth, maxYear
-	Declare Real price, minPrice, maxPrice
-	Declare InputFile report
-	Open report "GasPrices.dat"
-	While NOT eof(report)
-		Read report day, month, year, price
-		If count == 1 Then
-			Set minDay = day
-			Set minMonth = month
-			Set minYear = year
-			Set minPrice = price
-			Set maxDay = day
-			Set maxMonth = month
-			Set maxYear = year
-			Set maxPrice = price
-		End If
-		If price < minPrice Then
-			Set minDay = day
-			Set minMonth = month
-			Set minYear = year
-			Set minPrice = price
-		End If
-		If price > maxPrice Then
-			Set maxDay = day
-			Set maxMonth = month
-			Set maxYear = year
-			Set maxPrice = price
-		End If
-		Set count = count + 1
-		Print day, month, year, Tab, Tab, Tab, currencyFormat(round(price * 1000) / 1000)
-	End While
-	Print "Date with lowest gas prices: ", minDay, minMonth, minYear
-	Print "Lowest price: ", currencyFormat(round(minPrice * 1000) / 1000)
-	Print
-	Print "Date with highest gas prices: ", maxDay, maxMonth, maxYear
-	Print "Highest price: ", currencyFormat(round(maxPrice * 1000) / 1000)
-	Close report
-End Module
+// The minimums and maximums are initialized as of the first read.
+Open report "GasPrices.dat"
+Read report month, day, year, price // File must contain at least one record.
+Set minMonth = month
+Set minDay = day
+Set minYear = year
+Set minPrice = price
+Set maxMonth = month
+Set maxDay = day
+Set maxYear = year
+Set maxPrice = price
+
+While NOT eof(report)
+	Read report month, day, year, price
+	If price < minPrice Then
+		Set minMonth = month
+		Set minDay = day
+		Set minYear = year
+		Set minPrice = price
+	End If
+	If price > maxPrice Then
+		Set maxMonth = month
+		Set maxDay = day
+		Set maxYear = year
+		Set maxPrice = price
+	End If
+End While
+
+Display "Date with lowest gas prices: ", MONTHS[minMonth - 1], " ", minDay, ", ", minYear
+Display "Lowest price: ", currencyFormat(minPrice)
+Display
+Display "Date with highest gas prices: ", MONTHS[maxMonth - 1], " ", maxDay, ", ", maxYear
+Display "Highest price: ", currencyFormat(maxPrice)
+Close report

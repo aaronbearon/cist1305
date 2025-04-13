@@ -4,11 +4,11 @@ Module main()
 End Module
 
 Module printHeader()
-    Display "Brewster's Used Cars, Inc."
-    Display "Sales Report"
-    Display
-    Display "Salesperson ID ", Tab, Tab, Tab, "Sale Amount"
-    Display "============================================"
+    Print "Brewster's Used Cars, Inc."
+    Print "Sales Report"
+    Print
+    Print "Salesperson ID ", Tab, Tab, Tab, "Sale Amount"
+    Print "============================================"
 End Module
 
 Module printBody()

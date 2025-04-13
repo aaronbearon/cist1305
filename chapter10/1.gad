@@ -77,7 +77,7 @@ Module problemFive()
 	Declare InputFile inFile
 	Declare Integer val = 0, max
 	Open inFile "numbers.dat"
-	Read inFile max
+	Read inFile max // require non-empty file
 	While NOT eof(inFile)
 		Read inFile val
 		If val > max Then
@@ -126,7 +126,7 @@ Module problemSeven()
 	Declare Integer score, min
 	Declare InputFile stats
 	Open stats "golf.dat"
-	Read stats minName, min
+	Read stats minName, min // require non-empty file
 	While NOT eof(stats)
 		Read stats name, score
 		If score < min Then
