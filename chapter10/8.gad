@@ -1,0 +1,34 @@
+Module main()
+    Call printHeader()
+    Call printBody()
+End Module
+
+Module printHeader()
+    Display "Brewster's Used Cars, Inc."
+    Display "Sales Report"
+    Display
+    Display "Salesperson ID ", Tab, Tab, Tab, "Sale Amount"
+    Display "============================================"
+End Module
+
+Module printBody()
+	Declare Integer currentID = 0, readID
+	Declare Real readSale, salesPerRep = 0, grandTotal = 0
+	Declare InputFile report
+	Open report "BrewsterCars.dat"
+	While NOT eof(report)
+        Read report readID, readSale
+        If currentID != readID AND currentID != 0 Then
+			Print "Total sales for this salesperson: ", currencyFormat(salesPerRep)
+			Set salesPerRep = 0
+		End If
+        Set currentID = readID
+		Print currentID, Tab, Tab, Tab, currencyFormat(readSale)
+		Set salesPerRep = salesPerRep + readSale
+        Set grandTotal = grandTotal + readSale
+	End While
+    Print "Total sales for this salesperson: ", currencyFormat(salesPerRep)
+	Print
+	Print "Total of all sales: ", currencyFormat(grandTotal)
+	Close report
+End Module
