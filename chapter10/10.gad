@@ -1,0 +1,29 @@
+// 0-based month names for date display.
+Declare String MONTHS[12] =
+	"January", "February", "March", "April",
+	"May", "June", "July", "August",
+	"September", "October", "November", "December"
+
+// We need to declare all the variables.
+Declare Integer currentMonth = 0, readMonth, readDay, currentYear = 0, readYear, steps, days = 0
+Declare Real totalSteps = 0
+Declare InputFile report
+
+Open report "FitnessTracker.dat"
+While NOT eof(report)
+	Read report readMonth, readDay, readYear, steps
+	// Check for valid end of month each time.
+	If (currentMonth != readMonth OR currentYear != readYear) AND (currentMonth != 0 OR currentYear != 0) Then
+		// End of month
+		Display "Average steps for ", MONTHS[currentMonth - 1], ", ", currentYear, ": ", totalSteps / days
+		Set totalSteps = 0
+		Set days = 0
+	End If
+	// Accumulate the data
+	Set currentMonth = readMonth
+	Set currentYear = readYear
+	Set totalSteps = totalSteps + steps
+	Set days = days + 1
+End While
+Display "Average steps for ", MONTHS[currentMonth - 1], ", ", currentYear, ": ", totalSteps / days
+Close report
