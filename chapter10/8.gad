@@ -12,12 +12,14 @@ Module printHeader()
 End Module
 
 Module printBody()
+	// Use necessary initialization to avoid read before write.
 	Declare Integer currentID = 0, readID
 	Declare Real readSale, salesPerRep = 0, grandTotal = 0
 	Declare InputFile report
 	Open report "BrewsterCars.dat"
 	While NOT eof(report)
         Read report readID, readSale
+		// We need to check the condition before updating any other variables.
         If currentID != readID AND currentID != 0 Then
 			Print "Total sales for this salesperson: ", currencyFormat(salesPerRep)
 			Set salesPerRep = 0
@@ -27,6 +29,7 @@ Module printBody()
 		Set salesPerRep = salesPerRep + readSale
         Set grandTotal = grandTotal + readSale
 	End While
+	// Similar condition but for after eof.
     Print "Total sales for this salesperson: ", currencyFormat(salesPerRep)
 	Print
 	Print "Total of all sales: ", currencyFormat(grandTotal)
