@@ -1,3 +1,6 @@
+// CIST 1305 Final project: Program 1 data entry
+// Aaron Blum, 20250420
+
 Constant String FILE = "employees.dat"
 Constant Integer VALID_IDS_LENGTH = 5
 Declare String VALID_IDS[VALID_IDS_LENGTH] = "RE49762358", "PR156125", "OF45461", "RE68566547", "PR156984"

@@ -1,3 +1,6 @@
+// CIST 1305 Final project: Program 2 display data
+// Aaron Blum, 20250420
+
 Constant String FILE = "employees.dat"
 
 Module main()
