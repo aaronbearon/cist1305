@@ -3,11 +3,15 @@ Constant Integer VALID_IDS_LENGTH = 5
 Declare String VALID_IDS[VALID_IDS_LENGTH] = "RE49762358", "PR156125", "OF45461", "RE68566547", "PR156984"
 
 Module main()
+	// This flag variable lets the user decide if they have more employees to add.
+	// It starts at Y so the loop can run and stays at Y when the user wants to add more employees.
 	Declare String flag = "y"
+
 	Declare OutputFile employeeData
 	Open employeeData FILE
 	Display "Please enter a list of employee names along with their IDs and wages."
 	While toLower(flag) == "y"
+		// This is the module where all the fields for one employee are written to the file.
 		Call processEmployee(employeeData)
 		Display "Do you have any more employees to add?"
 		Display "Type Y for yes."
@@ -16,6 +20,7 @@ Module main()
 	Close employeeData
 End Module
 
+// Collect data for one employee
 Module processEmployee(OutputFile employeeData)
 	Declare String employeeId = inputValidEmployeeId()
 	Declare String firstName = inputValidName("First name:")
@@ -30,6 +35,7 @@ Function String inputValidEmployeeId()
 		Display "Employee ID:"
 		Input employeeId
 		Set employeeId = toUpper(employeeId)
+		// The employee ID is only returned if it matches any of the 5 valid IDs.
 		If checkValidEmployee(employeeId) Then
 			Return employeeId
 		End If
@@ -44,6 +50,7 @@ Declare String name
 	Do
 		Display label
 		Input name
+		// Name must not be empty.
 		If name != "" Then
 			Return name
 		End If
@@ -56,6 +63,7 @@ Function Real inputValidWage()
 	Do
 		Display "Employee Wage:"
 		Input employeeWage
+		// Wage must be positive and less than or equal to $45.50.
 		If employeeWage > 0 AND employeeWage <= 45.5 Then
 			Return employeeWage
 		End If

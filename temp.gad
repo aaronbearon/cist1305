@@ -1,0 +1,35 @@
+Module maine()
+	Declare Integer arraySize
+	Display "How many binary digits do you want?"
+	Display "You can pick 4, or 8."
+	Do
+		Input arraySize
+	While arraySize != 4 AND arraySize != 8
+	Select arraySize
+		Case 4:
+			Call four()
+		Case 8:
+            Call eight()
+		Default:
+	End Select
+End Module
+
+Module four()
+    Constant Integer SIZE = 4
+    Declare Integer array[SIZE], index
+    For index = 0 To SIZE - 1
+        Set array[index] = random(0, 1)
+        Display array[index]
+    End For
+End Module
+
+Module eight()
+Constant Integer SIZE = 8
+Declare Integer array[SIZE], index
+For index = 0 To SIZE - 1
+    Set array[index] = random(0, 1)
+    Display array[index]
+End For
+End Module
+
+Call maine()
