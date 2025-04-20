@@ -1,0 +1,76 @@
+Constant String FILE = "employees.dat"
+Constant Integer VALID_IDS_LENGTH = 5
+Declare String VALID_IDS[VALID_IDS_LENGTH] = "RE49762358", "PR156125", "OF45461", "RE68566547", "PR156984"
+
+Module main()
+	Declare String flag = "y"
+	Declare OutputFile employeeData
+	Open employeeData FILE
+	Display "Please enter a list of employee names along with their IDs and wages."
+	While toLower(flag) == "y"
+		Call processEmployee(employeeData)
+		Display "Do you have any more employees to add?"
+		Display "Type Y for yes."
+		Input flag
+	End While
+	Close employeeData
+End Module
+
+Module processEmployee(OutputFile employeeData)
+	Declare String employeeId = inputValidEmployeeId()
+	Declare String firstName = inputValidName("First name:")
+	Declare String lastName = inputValidName("Last name:")
+	Declare Real employeeWage = inputValidWage()
+	Write employeeData firstName, lastName, employeeId, employeeWage
+End Module
+
+Function String inputValidEmployeeId()
+	Declare String employeeId
+	Do
+		Display "Employee ID:"
+		Input employeeId
+		Set employeeId = toUpper(employeeId)
+		If checkValidEmployee(employeeId) Then
+			Return employeeId
+		End If
+		Display "Error, invalid ID; employee ID can be an of the following:"
+		Display "RE49762358, PR156125, OF45461, RE68566547, or PR156984"
+	While True
+End Function
+
+// Label is "First name:" or "Last name:"
+Function String inputValidName(String label)
+Declare String name
+	Do
+		Display label
+		Input name
+		If name != "" Then
+			Return name
+		End If
+		Display "Error, please enter non-empty name."
+	While True
+End Function
+
+Function Real inputValidWage()
+	Declare Real employeeWage
+	Do
+		Display "Employee Wage:"
+		Input employeeWage
+		If employeeWage > 0 AND employeeWage <= 45.5 Then
+			Return employeeWage
+		End If
+		Display "Error, employee wage must be above 0 and no more than 45.5"
+	While True
+End Function
+
+// This checks to be sure the employee ID is valid.
+// There is a hard coded list of valid IDs.
+Function Boolean checkValidEmployee(String employeeId) // Example: "RE68566547"
+	Declare Integer counter
+	For counter = 0 To VALID_IDS_LENGTH - 1
+		If VALID_IDS[counter] == employeeId Then
+			Return True
+		End If
+	End For
+	Return False
+End Function

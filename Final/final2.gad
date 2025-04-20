@@ -1,0 +1,29 @@
+Constant String FILE = "employees.dat"
+
+Module main()
+	Declare InputFile employeeData
+	Call printHeader()
+	// Open the file before passing it as an argument to a module.
+	Open employeeData FILE
+	Call printEmployees(employeeData)
+	Close employeeData
+End Module
+
+Module printHeader()
+	Display Tab, Tab, Tab, Tab, "GTC1305 Company"
+	Display Tab, Tab, Tab, Tab, "Employee Report"
+	Display
+	// Use the appropriate amount of tabs to format the output nicely.
+	Display "Employee Name", Tab, Tab, Tab, Tab, "Identification Number", Tab, Tab, Tab, Tab, "Wage"
+	Display "======================================================================"
+End Module
+
+Module printEmployees(InputFile employeeData)
+	Declare String firstName, lastName, employeeId
+	Declare Real employeeWage
+	While NOT eof(employeeData)
+		Read employeeData firstName, lastName, employeeId, employeeWage
+		// e.g. Strung, Jason                   OF45461                         $35.67
+		Display lastName, ", ", firstName, Tab, Tab, Tab, Tab, employeeId, Tab, Tab, Tab, Tab, currencyFormat(employeeWage)
+	End While
+End Module
