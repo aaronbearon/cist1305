@@ -1,0 +1,68 @@
+Module main()
+	Do
+	While showMenu() != 3
+End Module
+
+Function Integer showMenu()
+	Declare Integer option = 0
+	Display Tab, "Golf scores file"
+	Display "1. Add records to the file"
+	Display "2. Read records from the file"
+	Display "3. Quit"
+	Display "Enter your choice (1-3)"
+	While option < 1 OR option > 3
+		Input option
+		Call checkOptions(option)
+	End While
+	Return option
+End Function
+
+Module checkOptions(Integer choice)
+	Select choice
+		Case 1:
+			Call writeFile()
+		Case 2:
+			Call readFile()
+		Case 3:
+			Display "Hope you enjoyed!"
+		Default:
+			Display "Error, Invalid choice."
+			If choice > 3 Then
+				Display "Were you trying to quit? Press 3."
+			End If
+	End Select
+End Module
+
+Module writeFile()
+	// Adding records to golf.dat
+	Declare OutputFile stats
+	Declare Integer count, counter, score
+	Declare String name
+	Display "How many people played golf?"
+	Open stats "golf.dat"
+	// Input validation
+	Do
+		Input count
+	While count <= 0
+	Display "Who played and what were their scores?"
+	For counter = 1 To count
+		Input name
+		Input score
+		Write stats name, score
+	End For
+	Close stats
+	Display "File updated."
+End Module
+
+Module readFile()
+	// Viewing records from golf.dat
+	Declare String name
+	Declare Integer score
+	Declare InputFile stats
+	Open stats "golf.dat"
+	While NOT eof(stats)
+		Read stats name, score
+		Display name, " ", score
+	End While
+	Close stats
+End Module

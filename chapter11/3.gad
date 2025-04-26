@@ -1,0 +1,68 @@
+Module main()
+	Do
+	While showMenu() != 4
+End Module
+
+Function Integer showMenu()
+	Declare Integer option = 0
+	Display Tab, "Geometry Calculator"
+	Display "1. Calculate the Area of a Circle"
+	Display "2. Calculate the Area of a Rectangle"
+	Display "3. Calculate the Area of a Triangle"
+	Display "4. Quit"
+	Display "Enter your choice (1-4)"
+	// Only valid inputs break out of the loop.
+	While option < 1 OR option > 4
+		Input option
+		Call checkOptions(option)
+	End While
+	// The 4 option ends the program.
+	Return option
+End Function
+
+Module checkOptions(Integer choice)
+	Select choice
+		Case 1:
+			Call circleArea()
+		Case 2:
+			Call rectangleArea()
+		Case 3:
+			Call triangleArea()
+		Case 4:
+			// User-friendly message when the user is done.
+			Display "Hope you enjoyed!"
+		Default:
+			Display "Error, Invalid choice."
+			If choice > 4 Then
+				Display "Were you trying to quit? Press 4."
+			End If
+	End Select
+End Module
+
+Module circleArea()
+	Constant Real pi = 3.1415926535897932384626433832795
+	Declare Real radius
+	Display "What's the radius of the circle (in units)?"
+	Input radius
+	Display "The area of the circle is ", pi * (radius ^ 2), "units^2."
+End Module
+
+Module rectangleArea()
+	Declare Real width, length
+	Display "What are the width and length (in units) of the rectangle."
+	Display "Please enter the width:"
+	Input width
+	Display "Please enter the length:"
+	Input length
+	Display "The area of the rectangle is ", width * length, "units^2."
+End Module
+
+Module triangleArea()
+	Declare Real base, height
+	Display "What are the base and height (in units) of the triangle."
+	Display "Please enter the base:"
+	Input base
+	Display "Please enter the height:"
+	Input height
+	Display "The area of the triangle is ", 0.5 * base * height, "units^2."
+End Module
