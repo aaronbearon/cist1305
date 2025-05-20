@@ -1,9 +1,9 @@
 Module main()
 	Do
-	While showMenu() != 4
+	While showMenu()
 End Module
 
-Function Integer showMenu()
+Function Boolean showMenu()
 	Declare Integer option = 0
 	Display Tab, "Geometry Calculator"
 	Display "1. Calculate the Area of a Circle"
@@ -11,16 +11,19 @@ Function Integer showMenu()
 	Display "3. Calculate the Area of a Triangle"
 	Display "4. Quit"
 	Display "Enter your choice (1-4)"
+	Input option
 	// Only valid inputs break out of the loop.
 	While option < 1 OR option > 4
+		Display "Error, Invalid choice."
+		If option > 4 Then
+			Display "Were you trying to quit? Press 4."
+		End If
 		Input option
-		Call checkOptions(option)
 	End While
-	// The 4 option ends the program.
-	Return option
+	Return checkOptions(option)
 End Function
 
-Module checkOptions(Integer choice)
+Function Boolean checkOptions(Integer choice)
 	Select choice
 		Case 1:
 			Call circleArea()
@@ -28,16 +31,13 @@ Module checkOptions(Integer choice)
 			Call rectangleArea()
 		Case 3:
 			Call triangleArea()
-		Case 4:
+		Default:
 			// User-friendly message when the user is done.
 			Display "Hope you enjoyed!"
-		Default:
-			Display "Error, Invalid choice."
-			If choice > 4 Then
-				Display "Were you trying to quit? Press 4."
-			End If
+			Return False
 	End Select
-End Module
+	Return True
+End Function
 
 Module circleArea()
 	Constant Real pi = 3.1415926535897932384626433832795

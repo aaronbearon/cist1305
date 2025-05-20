@@ -1,0 +1,12 @@
+// Backwards word program
+Declare String userString, backString = ""
+Declare Integer index
+Display "Please enter a word, sentence, phrase, or characters and I'll reverse it for you."
+Input userString
+For index = 1 To length(userString)
+    Set backString = append(backString, userString[length(userString) - index])
+End For
+Display "Here's the backwards version of what you wrote:"
+Display
+Display backString
+Display

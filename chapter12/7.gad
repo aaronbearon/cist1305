@@ -1,0 +1,20 @@
+// Word separater program
+Declare String userString, separatedString = ""
+Declare Integer index
+Display "Please enter a sentence, but capitalize the first letter of every word and squish them together."
+Display "Then, I'll lowercase the capitalized letters and separate the words, leaving only the first letter of the sentence uppercase."
+Input userString
+While NOT isUpper(userString[0])
+    Display "Please start with a capital letter."
+    Input userString
+End While
+For index = 0 To length(userString) - 1
+    If index != 0 AND isUpper(userString[index]) Then
+        // Lowercases the corresponding letter and puts a space before that.
+        Set separatedString = append(separatedString, append(" ", toLower(userString[index])))
+    Else
+        Set separatedString = append(separatedString, userString[index])
+    End If
+End For
+
+Display separatedString

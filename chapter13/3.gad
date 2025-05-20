@@ -1,0 +1,35 @@
+// Recursive array element sum problem.
+Constant Integer initSize = 20
+// The size is treated like a constant but can be pre-initialized to a random number.
+Declare Integer SIZE = random(10, initSize)
+
+Module maine()
+    Declare Integer array[initSize]
+    Display "The array has ", SIZE, " slots."
+    Display "Below, you'll see each slot number and it's value."
+    Display "Then, you'll see the sum of the values."
+    Display
+    Set array[initArray(SIZE - 1, array)] = (random(-100, 100))
+    Display SIZE, ", ", array[SIZE - 1]
+    Display
+    Display "The slot values add up to ", arraySum(0, array), "."
+End Module
+
+Function Integer initArray(Integer i, Integer Ref array[])
+    If i > 0 Then
+        // This function call asks for a subscript.
+        Set array[initArray(i - 1, array)] = (random(-100, 100))
+        Display i, ", ", array[i - 1]
+    End If
+    Return i
+End Function
+
+Function Integer arraySum(Integer i, Integer Ref array[])
+    If i < SIZE - 1 Then
+        // This function gets an array element and adds it to the left one.
+        Return array[i] + arraySum(i + 1, array)
+    End If
+    Return array[i]
+End Function
+
+Call maine()

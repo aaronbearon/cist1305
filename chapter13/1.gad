@@ -1,0 +1,31 @@
+// Recursive multiplication problem
+Module main()
+	Declare Integer total, x, y
+	Display "Please enter two numbers (x and y) to multiply together."
+	Display "What's the value of x."
+	Set x = validateInput()
+	Display "What's the value of y."
+	Set y = validateInput()
+	Display
+	Display "Product: ", multi(x, y)
+End Module
+
+// Ensures each input is a positive integer.
+Function Integer validateInput()
+	Declare Integer var
+	Do
+		Input var
+		If var > 0 Then
+			Return var
+		End If
+		Display "Error, please enter a positive integer."
+	While True
+End Function
+
+Function Integer multi(Integer x, Integer y)
+	If y != 0 Then
+		Return x + multi(x, y - 1)
+	Else
+		Return 0
+	End If
+End Function

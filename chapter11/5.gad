@@ -1,37 +1,40 @@
 Module main()
 	Do
-	While showMenu() != 3
+	While showMenu()
 End Module
 
-Function Integer showMenu()
+Function Boolean showMenu()
 	Declare Integer option = 0
 	Display Tab, "Golf scores file"
 	Display "1. Add records to the file"
 	Display "2. Read records from the file"
 	Display "3. Quit"
 	Display "Enter your choice (1-3)"
+	Input option
+	// Only valid inputs break out of the loop.
 	While option < 1 OR option > 3
+		Display "Error, Invalid choice."
+		If option > 3 Then
+			Display "Were you trying to quit? Press 3."
+		End If
 		Input option
-		Call checkOptions(option)
 	End While
-	Return option
+	Return checkOptions(option)
 End Function
 
-Module checkOptions(Integer choice)
+Function Boolean checkOptions(Integer choice)
 	Select choice
 		Case 1:
 			Call writeFile()
 		Case 2:
 			Call readFile()
-		Case 3:
-			Display "Hope you enjoyed!"
 		Default:
-			Display "Error, Invalid choice."
-			If choice > 3 Then
-				Display "Were you trying to quit? Press 3."
-			End If
+			// User-friendly message when the user is done.
+			Display "Hope you enjoyed!"
+			Return False
 	End Select
-End Module
+	Return True
+End Function
 
 Module writeFile()
 	// Adding records to golf.dat
