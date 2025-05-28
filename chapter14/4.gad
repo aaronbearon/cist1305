@@ -1,0 +1,77 @@
+// Algorithm Bench #4
+
+Class dog
+	Public Module dogMessage()
+		Display "I'm a dog."
+	End Module
+End Class
+
+Class poodle Extends dog
+	Public Module poodleMessage()
+		Display "I'm a poodle."
+	End Module
+End Class
+
+// Some garbage modules are commented out.
+
+// A poodle is a type of dog.
+// That means you can assign poodles to dogs but not dogs to poodles.
+
+// A dog message can be found in the poodle type because a poodles can always claim that they're dogs.
+// You can't have a poodle message in the dog type,
+// or any dog could claim that they're a poodle (which isn't allowed!).
+
+Module one()
+	Declare dog x
+	Set x = New dog()
+	Call x.dogMessage()
+End Module
+
+// Module two()
+	// Declare poodle x
+	// Set x = New dog()
+	// Call x.dogMessage()
+// End Module
+
+Module three()
+	Declare dog x
+	Set x = New poodle()
+	Call x.dogMessage()
+End Module
+
+Module four()
+	Declare poodle x
+	Set x = New poodle()
+	Call x.dogMessage()
+End Module
+
+// Module five()
+	// Declare dog x
+	// Set x = New dog()
+	// Call x.poodleMessage()
+// End Module
+
+// Module six()
+	// Declare poodle x
+	// Set x = New dog()
+	// Call x.poodleMessage()
+// End Module
+
+// Module seven()
+	// Declare dog x
+	// Set x = New poodle()
+	// Call x.poodleMessage()
+// End Module
+
+// The other working modules above display "I'm a dog."
+// This one displays "I'm a poodle."
+Module eight()
+	Declare poodle x
+	Set x = New poodle()
+	Call x.poodleMessage()
+End Module
+
+Call one()
+Call three()
+Call four()
+Call eight()
