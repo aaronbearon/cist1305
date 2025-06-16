@@ -1,0 +1,62 @@
+// Programming exercise #1
+Class Pet
+	Private String name
+	Private String type
+	Private Integer age
+
+	Public Module Pet(String N, String T, Integer A)
+		Set name = N
+		Set type = T
+		Set age = A
+	End Module
+
+	Public Module setName(String N)
+		Set name = N
+	End Module
+
+	Public Module setType(String T)
+		Set type = T
+	End Module
+
+	Public Module setAge(Integer A)
+		Set age = A
+	End Module
+
+	Public Function String getName()
+		Return name
+	End Function
+
+	Public Function String getType()
+		Return type
+	End Function
+
+	Public Function Integer getAge()
+		Return age
+	End Function
+End Class
+
+Module main()
+	Declare Pet myPet
+	Declare String name
+	Declare String type
+	Declare Integer age
+	Display "What's your pet's name?"
+	Input name
+	Display "What type of pet do you have?"
+	Input type
+	Display "How old is your pet?"
+	Input age
+	While age < 1 OR age > 20
+		Display "Error, invalid age."
+		Input age
+	End While
+
+	// These don't work for some reason...
+	// myPet.setName(name)
+	// myPet.setType(type)
+	// myPet.setType(age)
+
+	// ...so I did this below.
+	Set myPet = New Pet(name, type, age)
+	Display myPet.getName(), " is a ", myPet.getAge(), " year old ", myPet.getType(), "."
+End Module

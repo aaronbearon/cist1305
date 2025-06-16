@@ -1,13 +1,13 @@
 // Algorithm Bench #1
 
-Class myCar
+Class MyCar
     Public Module go()
         Display "Start the engine."
     End Module
 End Class
 
 Module main()
-    Declare myCar kia
-    Set kia = New myCar()
+    Declare MyCar kia
+    Set kia = New MyCar()
     Call kia.go()
 End Module

@@ -7,6 +7,10 @@ Class dog
 End Class
 
 Class poodle Extends dog
+	Public Module dogMessage()
+		Call poodleMessage()
+	End Module
+	
 	Public Module poodleMessage()
 		Display "I'm a poodle."
 	End Module
@@ -65,6 +69,9 @@ End Module
 
 // The other working modules above display "I'm a dog."
 // This one displays "I'm a poodle."
+
+// Never mind, the same message name exists in poodle and calls the poodle message.
+// Therefore, only the top one displays "I'm a dog."
 Module eight()
 	Declare poodle x
 	Set x = New poodle()
