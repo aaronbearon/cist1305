@@ -4,12 +4,6 @@ Class Pet
 	Private String type
 	Private Integer age
 
-	Public Module Pet(String N, String T, Integer A)
-		Set name = N
-		Set type = T
-		Set age = A
-	End Module
-
 	Public Module setName(String N)
 		Set name = N
 	End Module
@@ -50,13 +44,11 @@ Module main()
 		Display "Error, invalid age."
 		Input age
 	End While
+	Set myPet = New Pet()
 
-	// These don't work for some reason...
-	// myPet.setName(name)
-	// myPet.setType(type)
-	// myPet.setType(age)
+	Call myPet.setName(name)
+	Call myPet.setType(type)
+	Call myPet.setAge(age)
 
-	// ...so I did this below.
-	Set myPet = New Pet(name, type, age)
 	Display myPet.getName(), " is a ", myPet.getAge(), " year old ", myPet.getType(), "."
 End Module
